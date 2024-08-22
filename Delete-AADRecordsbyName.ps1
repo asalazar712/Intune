@@ -24,7 +24,7 @@ Param
     [switch]$Autopilot
 )
 
-Set-Location $env:SystemDrive
+#Set-Location $env:SystemDrive
 
 
  
@@ -41,11 +41,11 @@ If ($PSBoundParameters.ContainsKey("AAD") -or $PSBoundParameters.ContainsKey("In
         }
         If ($PSBoundParameters.ContainsKey("AAD") -or $PSBoundParameters.ContainsKey("All"))
         {
-            Import-Module Microsoft.Graph.Identity.DirectoryManagement -ErrorAction Stop
+           Import-Module Microsoft.Graph.Identity.DirectoryManagement -ErrorAction Stop
         }
         If ($PSBoundParameters.ContainsKey("Autopilot") -or $PSBoundParameters.ContainsKey("All"))
         {
-            Import-Module Microsoft.Graph.DeviceManagement.Enrolment -ErrorAction Stop
+            Import-Module Microsoft.Graph.DeviceManagement.Enrollment -ErrorAction Stop
         }
        
         Write-host "Success" -ForegroundColor Green 
@@ -62,7 +62,7 @@ If ($PSBoundParameters.ContainsKey("AAD") -or $PSBoundParameters.ContainsKey("In
 {
     Try
     {
-        Write-Host "Authenticating with MG Graph and Azure AD..." -NoNewline
+        Write-Host "Authenticating with Microsoft Graph and EntraID..." -NoNewline
         
         $ScopePermissions = @(
             "DeviceManagementManagedDevices.ReadWrite.All"
@@ -75,7 +75,7 @@ If ($PSBoundParameters.ContainsKey("AAD") -or $PSBoundParameters.ContainsKey("In
             
         Connect-MGGraph -TenantId $tenantid -Scopes $ScopePermissions
          
-        Select-MgProfile -Name beta
+      #  Select-MgProfile -Name beta
         Write-host "Success" -ForegroundColor Green
     }
     Catch
@@ -195,7 +195,7 @@ If ($PSBoundParameters.ContainsKey("Autopilot") -or $PSBoundParameters.ContainsK
 }
 
 
-Set-Location $env:SystemDrive
+#Set-Location $env:SystemDrive
 
 
 

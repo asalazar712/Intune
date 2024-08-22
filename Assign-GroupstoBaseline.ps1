@@ -3,14 +3,11 @@ install-module -name Microsoft.Graph.Devices.CorporateManagement #Permissions De
 install-module -name Microsoft.Graph.DeviceManagement.Enrolment
 install-module -name Microsoft.Graph.DeviceManagement
 
-$permissions = find-mggraphCommand -command Get-MgDeviceManagementConfigurationPolicy | select -first 2 -ExpandProperty Permissions
-connect-mggraph -TenantId stratustechconsulting.com -Scopes $permissions.name
-Get-MgDeviceManagementConfigurationPolicy
 
 
 $authParams = @{
-    ClientId    = 'd1ddf0e4-d672-4dae-b554-9d5bdfd93547'
-    TenantId    = 'stratustechconsulting.com'
+    ClientId    = '<clientID>'
+    TenantId    = '<tenantID>'
     DeviceCode  = $true
 }
 $auth = Get-MsalToken @authParams
